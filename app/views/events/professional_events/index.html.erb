@@ -1,0 +1,51 @@
+<div data-core-strategy-tabs='1' class="tabs-container">
+  <ul data-core-strategy-tabs-tabs='1' class="nav nav-tabs">
+    <li class="active"><a  href="<%=events_professional_events_index_path()%>"><i class="fa fa-list"></i>  Professional Events</a></li>
+    <li><a href="<%=events_social_events_index_path()%>"><i class="fa fa-list"></i>  Social Events </a></li>
+    <li ><a href="<%= new_events_event_path(eventable_type: "ProfessionalEvent")%>"> <i class="fa fa-plus-circle"></i> Create Event</a></li>
+  </ul>
+</div>
+
+<div class="shortcodes">
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="table table-hover" width="768px;" >
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Created By</th>
+            <th>Date And Time</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%@professional_events.each do |professional_event|%>
+          <tr>
+            <td><%= truncate_info professional_event.id %></td>
+            <td><%= truncate_info professional_event.title %></td>
+            <td><%= truncate_info professional_event.description %></td>
+            <td><%= truncate_info professional_event.user.try(:fullname) %></td>
+            <td><%= date_format professional_event.event_date %> at <%= time_format professional_event.event_time %></td>
+            <td class="last links">
+              <ul class="inline list-inline">
+                <li title="Show" >
+                  <%= link_to raw("<i class='fa fa-info-circle'></i>") ,events_event_path(professional_event),class: "pjax"%>
+                </li>
+                <li title="Edit" >
+                  <%= link_to raw("<i class='fa fa-pencil'></i>") ,edit_events_event_path(professional_event),class: "pjax"%>
+                </li>
+                <li title="Delete" >
+                  <%= link_to raw("<i class='fa fa-remove'></i>"), events_event_path(professional_event), method: :delete, data: { confirm: 'Are you sure?' } ,'data-skip-pjax' => true%>
+                </li>
+              </ul>
+            </td>
+
+          </tr>
+          <%end%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

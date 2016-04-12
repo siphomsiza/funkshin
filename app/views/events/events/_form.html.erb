@@ -1,0 +1,51 @@
+<div class="form_error_messages">
+  <%= render "shared/form_error_messages", :f => f %>
+</div>
+<div class="form-group">
+  <label class="col-sm-2 control-label string required control-label"><abbr title="required">*</abbr> Title</label>
+  <div class="col-sm-10"><%= f.input :title, :as => :string ,label: false %></div>
+</div>
+
+<div class="form-group">
+  <label class="col-sm-2 control-label string required control-label"><abbr title="required">*</abbr> Description</label>
+  <div class="col-sm-10"><%= f.input :description, :as => :text ,label: false ,:input_html => {:class=>"textarea" ,:rows => 9 }%></div>
+</div>
+
+<div class="form-group">
+  <label class="col-sm-2 control-label string required control-label"><abbr title="required">*</abbr> Location</label>
+  <div class="col-sm-10"><%= f.input :location, :as => :string ,label: false %></div>
+</div>
+
+<div class="form-group">
+  <label class="col-sm-2 control-label string required control-label"><abbr title="required">*</abbr> Event Type</label>
+  <div class="col-sm-10">
+    <%= f.collection_select(:eventable_type, ['ProfessionalEvent','SocialEvent'] ,:to_s, :to_s,{}, {:include_blank => false ,class: 'select2 pull-left',width: "100%"}) %>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-sm-2 control-label string required control-label">
+    <abbr title="required">*</abbr> Event Date
+  </label>
+  <div class="col-sm-10">
+    <%= f.input :event_date, :as => :date_picker ,label: false%>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-sm-2 control-label string required control-label"><abbr title="required">*</abbr> Event Time</label>
+    <%= f.input :event_time, :as => :time_picker ,label: false %>
+</div>
+
+<div class="form-group">
+  <label class="col-sm-2 control-label string required control-label"><abbr title="required">*</abbr> Creator</label>
+  <div class="col-sm-10">
+    <%= f.collection_select(:user_id, Users::User.all.order("firstname asc") ,:id, :name,{}, {:include_blank => false ,class: 'pull-left'}) %>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="col-sm-offset-2 col-sm-10">
+    <%= f.button :submit ,class: "btn btn-theme-bg"%>
+  </div>
+</div>

@@ -1,0 +1,2 @@
+module Events::SocialEventsHelper
+end

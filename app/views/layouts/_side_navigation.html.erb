@@ -1,0 +1,12 @@
+<div class="col-sm-3 margin40" style="width: 23%;">
+  <ul class="list-unstyled side-nav">
+    <li><a class="<%= "active" if ['dashboard'].include?(controller_name)%>" href="<%= dashboard_index_path()%>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li><a class="<%= "active" if ['events'].include?(controller_name)%>" href="<%= new_events_event_path()%>"><i class="fa fa-calendar-plus-o"></i> Create Event</a></li>
+    <li><a class="<%= "active" if ['professional_events'].include?(controller_name)%>" href="<%= events_professional_events_index_path()%>"><i class="fa fa-calendar-o"></i> Professional Events</a></li>
+    <li><a class="<%= "active" if ['social_events'].include?(controller_name)%>" href="<%= events_social_events_index_path()%>"><i class="fa fa-calendar-o"></i> Social Events</a></li>
+    <li><a class="" href="#"><i class="fa fa-connectdevelop"></i> Connect</a></li>
+    <li><a class="" href="#"><i class="fa fa-bars"></i> Relive/Media</a></li>
+    <li><a class="" href="#"><i class="fa fa-calendar"></i> Calendar</a></li>
+    <li><a class="" href="#"><i class="fa fa-gear"></i> Setting</a></li>
+  </ul>
+</div>

@@ -1,0 +1,52 @@
+<div data-core-strategy-tabs='1' class="tabs-container">
+  <ul data-core-strategy-tabs-tabs='1' class="nav nav-tabs">
+    <li><a href="<%=events_professional_events_index_path()%>"><i class="fa fa-list"></i>  Professional Events</a></li>
+    <li class="active"><a href="<%=events_social_events_index_path()%>"><i class="fa fa-list"></i>  Social Events </a></li>
+    <li ><a href="<%= new_events_event_path(eventable_type: "SocialEvent")%>"> <i class="fa fa-plus-circle"></i> Create Event</a></li>
+  </ul>
+</div>
+
+<div class="shortcodes">
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="table table-hover" width="768px;" >
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Created By</th>
+            <th>Date And Time</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%@social_events.each do |social_event|%>
+          <tr>
+            <td><%= truncate_info social_event.id %></td>
+            <td><%= truncate_info social_event.title %></td>
+            <td><%= truncate_info social_event.description %></td>
+            <td><%= truncate_info social_event.user.try(:fullname) %></td>
+            <td><%= truncate_info social_event.event_date %> at <%= time_format social_event.event_time %></td>
+            <td class="last links">
+              <ul class="inline list-inline">
+                <li title="Show" >
+                  <%= link_to raw("<i class='fa fa-info-circle'></i>") ,events_event_path(social_event),class: "pjax"%>
+                </li>
+                <li title="Edit" >
+                  <%= link_to raw("<i class='fa fa-pencil'></i>") ,edit_events_event_path(social_event),class: "pjax"%>
+                </li>
+                <li title="Delete" >
+                  <%= link_to raw("<i class='fa fa-remove'></i>"), events_event_path(social_event), method: :delete, data: { confirm: 'Are you sure?' },'data-skip-pjax' => true%>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <%end%>
+        </tbody>
+      </table>
+      <!-- <button class="warning-alert btn btn-theme-dark btn-lg btn-sweet-alert">Warning Alert</button> -->
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div data-core-strategy-tabs='1' class="tabs-container">
+  <ul data-core-strategy-tabs-tabs='1' class="nav nav-tabs">
+    <li class="active"><a  href="#"><i class="fa fa-info-circle"></i>  Show</a></li>
+    <li><a href="<%= edit_events_event_path(@event)%>"><i class="fa fa-pencil"></i>  Edit</a></li>
+    <li >
+      <%= link_to raw("<i class='fa fa-remove'></i> Delete"), events_event_path(@event), method: :delete, data: { confirm: 'Are you sure?' },'data-skip-pjax' => true%>
+    </li>
+  </ul>
+</div>
+
+<div class="fieldset">
+  <h4>
+    Basic info
+  </h4>
+  <dl>
+    <dt><span class="label label-info">Event Title</span></dt>
+    <dd class="well"><%= @event.title%></dd>
+
+    <dt><span class="label label-info">Event Description</span></dt>
+    <dd class="well"><%= @event.description%></dd>
+
+    <dt><span class="label label-info">Event Created By</span></dt>
+    <dd class="well"><%= @event.user.try(:fullname)%></dd>
+
+    <dt><span class="label label-info">Event Date</span></dt>
+    <dd class="well"><%= date_format @event.event_date %></dd>
+
+    <dt><span class="label label-info">Event Time</span></dt>
+    <dd class="well"><%= time_format @event.event_time %></dd>
+
+    <dt><span class="label label-info">Event Location</span></dt>
+    <dd class="well"><%= @event.location %></dd>
+
+  </dl>
+</div>
